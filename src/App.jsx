@@ -9,12 +9,20 @@ function App() {
 
   // create new dice function
   function allNewDice() {
-    const diceArray = [];
+    const diceData = [];
     for (let i = 0; i <= 9; i++) {
-      // 6 sides to dice
-      diceArray.push(Math.ceil(Math.random() * 6));
+      // 6 possible outcomes
+      diceData.push({
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+      });
     }
-    return diceArray;
+    return diceData;
+  }
+
+  // get random number
+  function getRandomNumber() {
+    return Math.ceil(Math.random() * 6);
   }
 
   /*  for loop render
@@ -30,14 +38,12 @@ function App() {
   // roll the dice
 
   function rollTheDice() {
-    setDice(allNewDice());
+    let newDiceArray = allNewDice();
+    setDice(newDiceArray);
   }
 
-
-  // render die elements !must be at the BOTTOM!
-  const diceElements = dice.map((element) => <Die value={element} />);
-
-
+  // render die elements !must be at the BOTTOM!  use element.value because element is object.
+  const diceElements = dice.map((element) => <Die value={element.value} />);
 
   return (
     <main>
