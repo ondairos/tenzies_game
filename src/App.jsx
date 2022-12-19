@@ -23,21 +23,6 @@ function App() {
     return diceData;
   }
 
-  // get random number
-  function getRandomNumber() {
-    return Math.ceil(Math.random() * 6);
-  }
-
-  /*  for loop render
-  // function renderDieElements() {
-  //   let diceDisplayArray = [];
-  //   for (let i = 0; i < dice.length; i++) {
-  //     diceDisplayArray.push(<Die value={dice[i]} />);
-  //   }
-  //   return diceDisplayArray;
-  // }
-  */
-
   // roll the dice function
   function rollTheDice() {
     let newDiceArray = allNewDice();
@@ -46,8 +31,30 @@ function App() {
 
   // holdDice in place function
   function holdDice(id) {
-    console.log(id);
+    const frozenDice = dice.map((element) => {
+      if (element.id === id) {
+        return { ...element, isHeld: !element.isHeld };
+      }
+      return element;
+    });
+    setDice(frozenDice);
   }
+
+  /*
+  // holdDice with for implementation
+
+  // function holdDice(id) {
+  //   const newDice = [];
+  //   for (let i = 0; i < dice.length; i++) {
+  //     const die = dice[i];
+  //     if (die.id === id) {
+  //       newDice.push({ ...die, isHeld: !die.isHeld });
+  //     } else {
+  //       newDice.push(die);
+  //     }
+  //   }
+  //   setDice(newDice);
+  // } */
 
   // render die elements !must be at the BOTTOM!  use element.value because element is object.
   const diceElements = dice.map((element) => (
