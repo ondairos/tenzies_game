@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Confetti from "react-confetti";
 import Die from "./components/Die";
+import { nanoid } from "nanoid";
 
 function App() {
   // state init
@@ -15,6 +16,8 @@ function App() {
       diceData.push({
         value: Math.ceil(Math.random() * 6),
         isHeld: false,
+        // added nanoid for key warning
+        id: nanoid()
       });
     }
     return diceData;
@@ -43,7 +46,7 @@ function App() {
   }
 
   // render die elements !must be at the BOTTOM!  use element.value because element is object.
-  const diceElements = dice.map((element) => <Die value={element.value} />);
+  const diceElements = dice.map((element) => <Die key={element.id} value={element.value} />);
 
   return (
     <main>
