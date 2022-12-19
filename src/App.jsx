@@ -5,9 +5,15 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <p>ok</p>
-    </div>
+    <main>
+      <h1>Tenzies Game</h1>
+      <p>Roll the dice until all are the same! Click each die to freeze it's value between rolls.</p>
+      <div className="die-container">
+        <button className="roll-dice">
+
+        </button>
+      </div>
+    </main>
   );
 }
 
