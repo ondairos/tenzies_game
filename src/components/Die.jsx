@@ -7,7 +7,7 @@ export const Die = (props) => {
 
   return (
     <div className="die-face" onClick={props.hold} style={styles}>
-      <h2 className="die-num"></h2>
+      <h2 className="die-num">{props.value}</h2>
     </div>
   );
 };
