@@ -15,9 +15,9 @@ function App() {
       // 6 possible outcomes
       diceData.push({
         value: Math.ceil(Math.random() * 6),
-        isHeld: false,
+        isHeld: true,
         // added nanoid for key warning
-        id: nanoid()
+        id: nanoid(),
       });
     }
     return diceData;
@@ -46,7 +46,9 @@ function App() {
   }
 
   // render die elements !must be at the BOTTOM!  use element.value because element is object.
-  const diceElements = dice.map((element) => <Die key={element.id} value={element.value} />);
+  const diceElements = dice.map((element) => (
+    <Die key={element.id} value={element.value} isHeld={element.isHeld}/>
+  ));
 
   return (
     <main>
