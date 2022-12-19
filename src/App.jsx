@@ -15,7 +15,7 @@ function App() {
       // 6 possible outcomes
       diceData.push({
         value: Math.ceil(Math.random() * 6),
-        isHeld: true,
+        isHeld: false,
         // added nanoid for key warning
         id: nanoid(),
       });
@@ -38,16 +38,26 @@ function App() {
   // }
   */
 
-  // roll the dice
-
+  // roll the dice function
   function rollTheDice() {
     let newDiceArray = allNewDice();
     setDice(newDiceArray);
   }
 
+  // holdDice in place function
+  function holdDice(id) {
+    console.log(id);
+  }
+
   // render die elements !must be at the BOTTOM!  use element.value because element is object.
   const diceElements = dice.map((element) => (
-    <Die key={element.id} value={element.value} isHeld={element.isHeld}/>
+    <Die
+      key={element.id}
+      // Using an arrow function in this way is a common pattern in React when you want to pass a method as a prop to a child component and you want to preserve the value of this from the parent component.
+      holdDice={() => holdDice(element.id)}
+      value={element.value}
+      isHeld={element.isHeld}
+    />
   ));
 
   return (
