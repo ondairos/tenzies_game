@@ -22,9 +22,9 @@ function App() {
       return previousDiceValue === element.value;
     });
 
-    if (checkedHeld ===true && checkedValue === true) {
+    if (checkedHeld === true && checkedValue === true) {
       setTenzies(true);
-      console.log("You won.")
+      console.log("You won.");
     }
   }, [dice]);
 
@@ -105,6 +105,7 @@ function App() {
 
   return (
     <main>
+      {tenzies && <Confetti />}
       <h1>Tenzies Game</h1>
       <p>
         Roll the dice until all are the same!
@@ -114,7 +115,7 @@ function App() {
       <div className="die-container">{diceElements}</div>
 
       <button className="roll-dice" onClick={rollTheDice}>
-        Roll
+        {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
   );
