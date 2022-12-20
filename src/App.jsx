@@ -11,6 +11,9 @@ function App() {
   const [tenzies, setTenzies] = useState(false);
   // roll counter
   const [counter, setCounter] = useState(0);
+  // elapsed time states
+  const [startTime, setStartTime] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
     // checks if every element has isHeld === true
@@ -59,7 +62,7 @@ function App() {
       setTenzies(false);
       setCounter(0);
     } else {
-      // roll counter 
+      // roll counter
       setCounter(counter + 1);
       setDice(rerolledDice);
     }
@@ -92,6 +95,16 @@ function App() {
   //   setDice(newDice);
   // } */
 
+  // handleTime function
+  function handleTime() {
+    if (!startTime) {
+      setStartTime(Date.now());
+    } else {
+      setElapsedTime(Date.now() - startTime);
+      setStartTime(null);
+    }
+  }
+
   // render die elements !must be at the BOTTOM!  use element.value because element is object.
   const diceElements = dice.map((element) => (
     <Die
@@ -116,7 +129,8 @@ function App() {
         </p>
         <div className="die-container">{diceElements}</div>
         {tenzies && <p>It took you: {counter} rolls to win!</p>}
-        <button className="roll-dice" onClick={rollTheDice}>
+        {tenzies && <p>Time elapsed: {elapsedTime}ms</p>}
+        <button className="roll-dice" onClick={()=>{ rollTheDice(); handleTime() }}>
           {/* if the game is over display New Game else Roll */}
           {tenzies ? "New Game" : "Roll"}
         </button>
