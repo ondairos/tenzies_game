@@ -54,7 +54,6 @@ function App() {
 
   // roll the dice function
   function rollTheDice() {
-    //  if to dice.id exei dice.isHeld === true tote metra to length ths neas unHeld array kai rollare nea zaria
     const rerolledDice = dice.map((element) => {
       if (element.isHeld === true) {
         return element;
@@ -62,7 +61,12 @@ function App() {
       // reroll dice
       return { ...element, value: Math.ceil(Math.random() * 6) };
     });
-    setDice(rerolledDice);
+    if (tenzies) {
+      setDice(allNewDice());
+      setTenzies(false);
+    } else {
+      setDice(rerolledDice);
+    }
   }
 
   // holdDice in place function
@@ -105,6 +109,7 @@ function App() {
 
   return (
     <main>
+      {/* if the game is over throw confetti */}
       {tenzies && <Confetti />}
       <h1>Tenzies Game</h1>
       <p>
@@ -115,6 +120,7 @@ function App() {
       <div className="die-container">{diceElements}</div>
 
       <button className="roll-dice" onClick={rollTheDice}>
+        {/* if the game is over display New Game else Roll */}
         {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
