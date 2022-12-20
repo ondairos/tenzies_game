@@ -25,8 +25,15 @@ function App() {
 
   // roll the dice function
   function rollTheDice() {
-    let newDiceArray = allNewDice();
-    setDice(newDiceArray);
+    //  if to dice.id exei dice.isHeld === true tote metra to length ths neas unHeld array kai rollare nea zaria
+    const rerolledDice = dice.map((element) => {
+      if (element.isHeld === true) {
+        return element;
+      }
+      // reroll dice
+      return { ...element, value: Math.ceil(Math.random() * 6) };
+    });
+    setDice(rerolledDice);
   }
 
   // holdDice in place function
@@ -71,7 +78,7 @@ function App() {
     <main>
       <h1>Tenzies Game</h1>
       <p>
-        Roll the dice until all are the same! Click each die to freeze it's
+        Roll the dice until all are the same!<br/>Click each die to freeze it's
         value between rolls.
       </p>
       <div className="die-container">{diceElements}</div>
