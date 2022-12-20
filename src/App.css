@@ -1,4 +1,6 @@
 body {
+  height: 100%;
+  min-height: 100%;
   background-color: #124667;
   font-family: Arial, Helvetica, sans-serif;
   padding: 20px;
@@ -8,6 +10,7 @@ body {
 }
 
 main {
+  margin-top: auto;
   height: 400px;
   max-width: 800px;
   background-color: whitesmoke;
@@ -57,7 +60,7 @@ p {
 
 .roll-dice {
   height: 50px;
-  width: 100px;
+  width: 150px;
   border: none;
   border-radius: 6px;
   background-color: #29a4ba;
@@ -73,4 +76,29 @@ p {
 
 .roll-dice:focus {
   outline: none;
+}
+
+.main_footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: white;
+}
+
+@media (max-height: 500px) {
+  .main_footer {
+    margin-top: 30px;
+    position: relative;
+  }
+}
+
+.anchor {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.anchor:hover{
+  font-weight: 600;
 }
