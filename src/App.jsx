@@ -108,22 +108,27 @@ function App() {
   ));
 
   return (
-    <main>
-      {/* if the game is over throw confetti */}
-      {tenzies && <Confetti />}
-      <h1>Tenzies Game</h1>
-      <p>
-        Roll the dice until all are the same!
-        <br />
-        Click each die to freeze it's value between rolls.
-      </p>
-      <div className="die-container">{diceElements}</div>
+    <>
+      <main>
+        {/* if the game is over throw confetti */}
+        {tenzies && <Confetti />}
+        <h1>Tenzies Game</h1>
+        <p>
+          Roll the dice until all are the same!
+          <br />
+          Click each die to freeze it's value between rolls.
+        </p>
+        <div className="die-container">{diceElements}</div>
 
-      <button className="roll-dice" onClick={rollTheDice}>
-        {/* if the game is over display New Game else Roll */}
-        {tenzies ? "New Game" : "Roll"}
-      </button>
-    </main>
+        <button className="roll-dice" onClick={rollTheDice}>
+          {/* if the game is over display New Game else Roll */}
+          {tenzies ? "New Game" : "Roll"}
+        </button>
+      </main>
+      <footer className="main_footer">
+        <p>Ioannis Kantiloros. Made with ReactJS</p>
+      </footer>
+    </>
   );
 }
 
