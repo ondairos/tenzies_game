@@ -7,6 +7,35 @@ import { nanoid } from "nanoid";
 function App() {
   // state init
   const [dice, setDice] = useState(allNewDice());
+  // state for endgame
+  const [tenzies, setTenzies] = useState(false);
+
+  useEffect(() => {
+    // checks if every element has isHeld === true
+    let checkedHeld = dice.every((element) => {
+      return element.isHeld;
+    });
+    // create a reference value for checking
+    let previousDiceValue = dice[0].value;
+    // checks if the elements in dice are all equal to dice[0].value
+    let checkedValue = dice.every((element) => {
+      return previousDiceValue === element.value;
+    });
+
+    if (checkedHeld ===true && checkedValue === true) {
+      setTenzies(true);
+      console.log("You won.")
+    }
+  }, [dice]);
+
+  /**
+   * Challenge: Check the dice array for these winning conditions:
+   * 1. All dice are held, and
+   * 2. all dice have the same value
+   *
+   * If both conditions are true, set `tenzies` to true and log
+   * "You won!" to the console
+   */
 
   // create new dice function
   function allNewDice() {
@@ -78,8 +107,9 @@ function App() {
     <main>
       <h1>Tenzies Game</h1>
       <p>
-        Roll the dice until all are the same!<br/>Click each die to freeze it's
-        value between rolls.
+        Roll the dice until all are the same!
+        <br />
+        Click each die to freeze it's value between rolls.
       </p>
       <div className="die-container">{diceElements}</div>
 
