@@ -9,6 +9,8 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
   // state for endgame
   const [tenzies, setTenzies] = useState(false);
+  // roll counter
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     // checks if every element has isHeld === true
@@ -27,15 +29,6 @@ function App() {
       console.log("You won.");
     }
   }, [dice]);
-
-  /**
-   * Challenge: Check the dice array for these winning conditions:
-   * 1. All dice are held, and
-   * 2. all dice have the same value
-   *
-   * If both conditions are true, set `tenzies` to true and log
-   * "You won!" to the console
-   */
 
   // create new dice function
   function allNewDice() {
@@ -64,7 +57,10 @@ function App() {
     if (tenzies) {
       setDice(allNewDice());
       setTenzies(false);
+      setCounter(0);
     } else {
+      // roll counter 
+      setCounter(counter + 1);
       setDice(rerolledDice);
     }
   }
@@ -119,7 +115,7 @@ function App() {
           Click each die to freeze it's value between rolls.
         </p>
         <div className="die-container">{diceElements}</div>
-
+        {tenzies && <p>It took you: {counter} rolls to win!</p>}
         <button className="roll-dice" onClick={rollTheDice}>
           {/* if the game is over display New Game else Roll */}
           {tenzies ? "New Game" : "Roll"}
@@ -127,7 +123,10 @@ function App() {
       </main>
       <footer className="main_footer">
         <p>
-          <a href="https://www.linkedin.com/in/ioannis-kantiloros-2438b6153/" className="anchor">
+          <a
+            href="https://www.linkedin.com/in/ioannis-kantiloros-2438b6153/"
+            className="anchor"
+          >
             Ioannis Kantiloros.
           </a>
           <span>&nbsp;&nbsp;&nbsp;Made with ReactJS</span>
