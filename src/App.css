@@ -10,6 +10,7 @@ body {
 }
 
 main {
+  margin-top: auto;
   height: 400px;
   max-width: 800px;
   background-color: whitesmoke;
@@ -90,4 +91,14 @@ p {
     margin-top: 30px;
     position: relative;
   }
+}
+
+.anchor {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.anchor:hover{
+  font-weight: 600;
 }

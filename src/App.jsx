@@ -126,7 +126,12 @@ function App() {
         </button>
       </main>
       <footer className="main_footer">
-        <p>Ioannis Kantiloros. Made with ReactJS</p>
+        <p>
+          <a href="https://www.linkedin.com/in/ioannis-kantiloros-2438b6153/" className="anchor">
+            Ioannis Kantiloros.
+          </a>
+          <span>&nbsp;&nbsp;&nbsp;Made with ReactJS</span>
+        </p>
       </footer>
     </>
   );
